@@ -107,3 +107,5 @@ def process_document(spark, document_id: str) -> dict:
         "structured_content_path": structured_path,
         "status": "DOCUMENT_PARSED"
     }
+
+    
