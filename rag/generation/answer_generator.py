@@ -24,8 +24,6 @@ def generate_answer(messages: list[dict]) -> str:
 
     answer = response.choices[0].message.content
 
-    # Reasoning models return content as a list of
-    # typed blocks; extract the actual text blocks.
     if isinstance(answer, list):
         answer = "".join(
             part.get("text", "")

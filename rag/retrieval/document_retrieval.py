@@ -10,7 +10,7 @@ from retrieval.vector_search import (
 from retrieval.context_builder import build_context
 
 
-def retrieve_context(spark, query: str, dbutils) -> dict:
+def retrieve_context(connection, query: str) -> dict:
     """
     Retrieves relevant document chunks and builds context
     for the given user query.
@@ -45,9 +45,9 @@ def retrieve_context(spark, query: str, dbutils) -> dict:
             "sources": []
         }
 
-    # Step 4: Build context
+    # Step 4: Build context using SQL connection
     context_result = build_context(
-        spark=spark,
+        connection=connection,
         retrieved_chunks=retrieved_chunks
     )
 
