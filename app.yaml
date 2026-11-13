@@ -1,0 +1,44 @@
+# Databricks Apps configuration — single-app deployment.
+#
+# One app serves everything: the FastAPI backend (backend/main.py), which
+# calls the RAG pipeline in rag/orchestration/query_pipeline.py, and the built
+# React frontend (frontend/dist), mounted as static files by the backend
+# itself. The frontend therefore calls the API with a relative URL — same
+# origin, no CORS.
+#
+# The frontend is built during deployment: the platform sees the root
+# package.json, runs `npm install` + `npm run build` (whose build script builds
+# frontend/ via `npm --prefix`), then runs this command.
+#
+# DATABRICKS_APP_PORT is the ONE value the runtime expands inside `command`
+# (general env-var expansion is not supported here). Do not hard-code 8080 —
+# that port is not forwarded by the platform.
+#
+# Databricks Apps also injects DATABRICKS_HOST, DATABRICKS_CLIENT_ID and
+# DATABRICKS_CLIENT_SECRET (the app's service principal) automatically; the
+# pipeline's sql_connection.py and vector_search.py read them from the
+# environment. The valueFrom entries below attach the app's resources
+# (vector search index, Cohere secret, SQL warehouse) to those env vars.
+
+command:
+  - uvicorn
+  - main:app
+  - --app-dir
+  - backend
+  - --host
+  - "0.0.0.0"
+  - --port
+  - "$DATABRICKS_APP_PORT"
+
+env:
+  - name: PRAVNISLAV_ENVIRONMENT
+    value: production
+
+  - name: VECTOR_SEARCH_INDEX
+    valueFrom: vector-search-index
+
+  - name: COHERE_API_KEY
+    valueFrom: secret
+
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: sql-warehouse

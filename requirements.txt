@@ -1,0 +1,19 @@
+# Databricks Apps runtime dependencies (single-app deployment).
+#
+# The app container installs ONLY from this file — unlike notebooks, there is
+# no pre-provisioned Databricks environment. The backend's own deps and the
+# RAG pipeline's deps must therefore all be listed here.
+
+# Backend API layer (backend/)
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30,<1.0
+pydantic>=2.7,<3.0
+pydantic-settings>=2.3,<3.0
+
+# RAG pipeline (rag/)
+databricks-ai-search>=0.83
+databricks-openai>=0.16.0
+databricks-sdk
+databricks-sql-connector>=3.0.0
+
+cohere

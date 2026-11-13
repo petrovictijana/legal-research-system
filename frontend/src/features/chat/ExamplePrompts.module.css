@@ -1,0 +1,148 @@
+.section {
+  width: 100%;
+  max-width: 760px;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Small uppercase section label with wide tracking (natural case for SR). */
+.heading {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-text-subtle);
+  text-align: left;
+  margin: 0;
+}
+
+/* Two-column grid on desktop/tablet; one column on mobile. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+}
+
+/* Card: pale blue-gray surface, icon circle + question + trailing arrow.
+   Equal heights via grid stretch + full-height card. */
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 60px;
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  background-color: var(--color-surface-muted);
+  color: var(--color-navy);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition-property: background-color, border-color, box-shadow, transform;
+  transition-duration: var(--motion-fast);
+}
+
+.card:hover {
+  background-color: var(--color-white);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-1);
+}
+
+/* Decorative circular icon container. Navy icon on a pale blue-gray fill. */
+.iconCircle {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(167, 180, 195, 0.28);
+  color: var(--color-navy);
+}
+
+.text {
+  flex: 1 1 auto;
+  color: var(--color-navy);
+}
+
+/* Subtle trailing affordance. Slate passes as a UI graphic; the whole card is
+   a real button, so the arrow is redundant reinforcement, not sole meaning. */
+.arrow {
+  flex: none;
+  color: var(--color-text-subtle);
+  transition-property: transform, color;
+  transition-duration: var(--motion-fast);
+}
+
+.card:hover .arrow {
+  color: var(--color-navy);
+  transform: translateX(3px);
+}
+
+/* Subtle staggered entrance so the grid gently draws the eye on load. */
+@keyframes promptIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.item {
+  opacity: 0;
+  animation: promptIn 0.45s ease-out forwards;
+}
+
+.item:nth-child(1) {
+  animation-delay: 120ms;
+}
+
+.item:nth-child(2) {
+  animation-delay: 190ms;
+}
+
+.item:nth-child(3) {
+  animation-delay: 260ms;
+}
+
+.item:nth-child(4) {
+  animation-delay: 330ms;
+}
+
+@media (max-width: 599px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover .arrow {
+    transform: none;
+  }
+
+  /* Never leave content stuck at the animation's starting opacity. */
+  .item {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

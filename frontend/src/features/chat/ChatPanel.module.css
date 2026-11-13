@@ -1,0 +1,65 @@
+/* Conversation mode: narrow column + sticky composer. */
+.panel {
+  width: 100%;
+  max-width: var(--chat-column-max);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  flex: 1;
+}
+
+/* Intro (landing) mode: vertically centered hero composition. */
+.panelIntro {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.intro {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-7);
+  padding: var(--space-7) 0;
+}
+
+.introComposer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.introComposer > :first-child {
+  width: 100%;
+}
+
+.conversation {
+  display: flex;
+  flex-direction: column;
+  padding-top: var(--space-5);
+}
+
+.composerArea {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+  background-color: var(--color-surface);
+}
+
+@media (max-width: 599px) {
+  .intro {
+    gap: var(--space-6);
+    padding: var(--space-5) 0;
+  }
+}

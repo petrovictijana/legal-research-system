@@ -1,0 +1,23 @@
+# Databricks Apps configuration.
+#
+# Databricks Apps runs this command and routes traffic to the port given by the
+# DATABRICKS_APP_PORT environment variable. That variable is the ONE value the
+# runtime expands inside `command` (general env-var expansion is not supported
+# here), so we reference it directly. Do not hard-code 8080 — that port is not
+# forwarded by the platform.
+#
+# `main:app` is the FastAPI instance in main.py. For `orchestration...` imports
+# to resolve, this backend must be deployed where the `orchestration` package is
+# importable (the Databricks RAG repo / workspace), e.g. as a sibling package.
+
+command:
+  - uvicorn
+  - main:app
+  - --host
+  - "0.0.0.0"
+  - --port
+  - "$DATABRICKS_APP_PORT"
+
+env:
+  - name: PRAVNISLAV_ENVIRONMENT
+    value: production

@@ -1,0 +1,14 @@
+# Runtime dependencies for the Pravnislav FastAPI backend.
+#
+# NOTE: The RAG pipeline (`orchestration` package) and its Databricks
+# dependencies (Vector Search, LLM client, etc.) are provided by the existing
+# Databricks project / workspace environment and are intentionally NOT pinned
+# here, to avoid duplicating that configuration.
+#
+# On Databricks Apps, `fastapi` and `uvicorn` are already present in the base
+# environment; they are listed here so the app also runs locally and in CI.
+
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30,<1.0
+pydantic>=2.7,<3.0
+pydantic-settings>=2.3,<3.0

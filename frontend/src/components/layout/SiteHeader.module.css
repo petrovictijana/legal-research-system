@@ -1,0 +1,165 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--color-nav-surface);
+  box-shadow: var(--shadow-1);
+}
+
+/* White focus ring on the navy bar (mirrors SiteFooter). */
+.header :focus-visible {
+  outline-color: var(--color-focus-inverse);
+}
+
+.inner {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: var(--color-on-nav);
+}
+
+.wordmark:hover {
+  text-decoration: none;
+}
+
+.wordmarkName {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.tagline {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  color: var(--color-on-nav);
+  opacity: 0.72;
+  letter-spacing: 0;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.deskLinks {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-on-nav);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.navLink[aria-disabled='true'] {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.navLink[aria-disabled='true']:hover {
+  background-color: transparent;
+}
+
+/* Active nav indicator — subtle white wash on the navy bar (no burgundy, so the
+   scarce red stays reserved for the "Pošalji" action). White text 14.3:1. */
+.navLinkActive {
+  color: var(--color-on-nav);
+  font-weight: var(--font-weight-semibold);
+  background-color: rgba(255, 255, 255, 0.16);
+}
+
+.navLinkActive:hover {
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+.menuToggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  padding: var(--space-2);
+  background-color: transparent;
+  border: 1px solid var(--color-on-nav);
+  border-radius: var(--radius-sm);
+  color: var(--color-on-nav);
+  cursor: pointer;
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 599px) {
+  .deskLinks {
+    display: none;
+  }
+
+  .menuToggle {
+    display: inline-flex;
+  }
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-2);
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-1);
+  }
+
+  /* Panel is white, so links revert to navy; active = quiet gray-100 pill. */
+  .mobileMenu .navLink {
+    width: 100%;
+    justify-content: flex-start;
+    color: var(--color-navy);
+  }
+
+  .mobileMenu .navLink:hover {
+    background-color: var(--color-surface-muted);
+  }
+
+  .mobileMenu .navLinkActive,
+  .mobileMenu .navLinkActive:hover {
+    color: var(--color-navy);
+    background-color: var(--color-surface-muted);
+  }
+
+  /* Keep the focus ring visible on the white panel. */
+  .mobileMenu :focus-visible {
+    outline-color: var(--color-focus);
+  }
+}

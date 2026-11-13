@@ -1,0 +1,23 @@
+.userRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.userBubble {
+  max-width: 85%;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-user-bubble);
+  color: var(--color-on-nav);
+  border-radius: var(--radius-lg);
+  line-height: var(--line-height-body);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.assistantRow {
+  display: flex;
+}
+
+.assistantRow > * {
+  width: 100%;
+}

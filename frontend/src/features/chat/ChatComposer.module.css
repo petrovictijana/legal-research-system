@@ -1,0 +1,103 @@
+.composer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  transition-property: border-color, box-shadow;
+}
+
+/* Decorative AI/sparkles affordance on the left of the input. */
+.leadIcon {
+  flex: none;
+  align-self: center;
+  color: var(--color-text-subtle);
+}
+
+/* The inner textarea drops its own outline, so the container carries a
+   visible keyboard focus ring when the textarea is focused. */
+.row:focus-within {
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow-2);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.textarea {
+  flex: 1;
+  min-height: 44px;
+  max-height: 180px;
+  overflow-y: auto;
+  resize: none;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-body);
+  letter-spacing: inherit;
+  padding: var(--space-3) 0;
+}
+
+.textarea:focus {
+  outline: none;
+}
+
+.textarea::placeholder {
+  /* Muted slate that passes AA (~7.6:1 on white); NOT gray-400 (~2.1:1 fails). */
+  color: var(--color-text-subtle);
+}
+
+/* Burgundy rounded-square send button — the scarce primary action. */
+.send {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent);
+  color: var(--color-text-on-dark);
+  cursor: pointer;
+  transition-property: background-color, transform;
+}
+
+.send:not(:disabled):hover {
+  background-color: var(--color-accent-hover);
+}
+
+.send:not(:disabled):active {
+  transform: scale(0.96);
+}
+
+.send:disabled {
+  background-color: var(--color-disabled-surface);
+  color: var(--color-gray-400);
+  cursor: not-allowed;
+}
+
+/* Transient validation emphasis — allowed burgundy usage. */
+.error {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-accent);
+  padding-left: var(--space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .send:not(:disabled):active {
+    transform: none;
+  }
+}

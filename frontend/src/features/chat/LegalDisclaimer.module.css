@@ -1,0 +1,50 @@
+.wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+}
+
+.line {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--space-2);
+  max-width: 64ch;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-snug);
+  color: var(--color-text-subtle);
+}
+
+.icon {
+  flex: none;
+  margin-top: 2px;
+  color: var(--color-text-subtle);
+}
+
+/* Burgundy emphasis link — an allowed scarce-accent use (learn-more about
+   sources). A real <button> disclosure, keyboard-operable, underlined. */
+.toggle {
+  display: inline;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: var(--color-accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  color: var(--color-accent-hover);
+  text-decoration: none;
+}
+
+.details {
+  max-width: 64ch;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-body);
+  color: var(--color-text-subtle);
+}

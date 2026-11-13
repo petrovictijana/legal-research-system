@@ -1,0 +1,10 @@
+# Databricks Apps configuration.
+#
+# Databricks runs this command after deploying the source. It serves the Vite
+# build output in ./dist via the zero-dependency Node server (server.js).
+#
+# IMPORTANT: the app must be built first (`npm run build`) so that ./dist exists,
+# and `npm install` must have produced node_modules. Databricks installs npm
+# dependencies from package.json during deploy; the build itself runs as the
+# `build` step of `npm run start` below (so a fresh deploy builds then serves).
+command: ['npm', 'run', 'start']

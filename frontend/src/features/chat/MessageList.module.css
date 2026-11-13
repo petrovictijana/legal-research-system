@@ -1,0 +1,64 @@
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+}
+
+.pendingRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.pendingText {
+  font-style: italic;
+}
+
+.pendingIcon {
+  flex: none;
+  color: var(--color-navy);
+}
+
+.spinner {
+  width: 1.1em;
+  height: 1.1em;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-navy);
+  border-radius: var(--radius-pill);
+  animation: message-spin 0.7s linear infinite;
+  flex: none;
+}
+
+.errorRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-surface-muted);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+}
+
+.errorText {
+  flex: 1;
+  min-width: 12ch;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+}
+
+@keyframes message-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
+}
